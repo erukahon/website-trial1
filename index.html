@@ -99,26 +99,26 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            height: auto;
+            min-height: 60vh;
             background: #0a0a0a;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
+            padding: 100px 20px 20px;
             width: 100%;
         }
 
         .hero-image {
-            position: absolute;
-            top: 0;
-            left: 0;
+            position: relative;
             width: 100%;
-            height: 100%;
+            max-width: 1200px;
+            height: auto;
             object-fit: contain;
-            object-position: center top;
             z-index: 1;
-            max-width: 100%;
+            margin: 0 auto;
+            display: block;
         }
 
         .hero-overlay {
@@ -129,6 +129,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.3);
             z-index: 2;
+            pointer-events: none;
         }
 
         .hero-content {
@@ -146,11 +147,15 @@
 
         /* Content Sections */
         .section {
-            padding: 80px 0;
+            padding: 40px 0;
             max-width: 1200px;
             margin: 0 auto;
             padding-left: 20px;
             padding-right: 20px;
+        }
+
+        .section#about {
+            padding-top: 20px;
         }
 
         .section h2 {
@@ -219,9 +224,9 @@
             margin: 0 auto;
             text-align: center;
             color: #cccccc;
-            font-size: 1.1rem;
-            font-weight: 400;
-            line-height: 1.8;
+            font-size: 1.3rem;
+            font-weight: 500;
+            line-height: 2.0;
         }
 
         /* Members Section */
@@ -477,19 +482,22 @@
             }
 
             .hero {
-                height: 80vh;
-                min-height: 500px;
+                min-height: 50vh;
+                padding: 80px 15px 15px;
             }
 
             .hero-image {
                 width: 100%;
-                height: 100%;
-                object-fit: contain;
-                object-position: center top;
+                max-width: 100%;
+                height: auto;
             }
 
             .section {
-                padding: 60px 0;
+                padding: 30px 0;
+            }
+
+            .section#about {
+                padding-top: 15px;
             }
 
             .section h2 {
@@ -537,20 +545,25 @@
             }
 
             .hero {
-                height: 70vh;
-                min-height: 400px;
+                min-height: 40vh;
+                padding: 70px 10px 10px;
             }
 
             .hero-image {
                 width: 100%;
-                height: 100%;
-                object-fit: contain;
-                object-position: center top;
+                max-width: 100%;
+                height: auto;
             }
 
             .section {
                 padding-left: 15px;
                 padding-right: 15px;
+                padding-top: 30px;
+                padding-bottom: 30px;
+            }
+
+            .section#about {
+                padding-top: 15px;
             }
 
             .music-player,
@@ -574,11 +587,15 @@
                 gap: 20px;
             }
 
+            .hero {
+                min-height: 55vh;
+                padding: 90px 20px 20px;
+            }
+
             .hero-image {
                 width: 100%;
-                height: 100%;
-                object-fit: contain;
-                object-position: center top;
+                max-width: 900px;
+                height: auto;
             }
 
             .news-grid {
@@ -592,11 +609,15 @@
 
         /* Large desktop adjustments */
         @media (min-width: 1200px) {
+            .hero {
+                min-height: 60vh;
+                padding: 100px 20px 20px;
+            }
+
             .hero-image {
                 width: 100%;
-                height: 100%;
-                object-fit: contain;
-                object-position: center top;
+                max-width: 1200px;
+                height: auto;
             }
         }
     </style>
@@ -637,13 +658,14 @@
 
     <!-- About Section -->
     <section class="section" id="about">
-        <h2>About</h2>
         <div class="band-photo-section">
-            <div class="band-photo">
-                <div class="photo-placeholder">📸</div>
-            </div>
             <div class="band-intro">
-                <p>エルカホンは、Vocal/Guitar、Bass、Drumsの3人編成で結成されたロックバンドです。それぞれが持つ個性豊かな音楽性を融合させ、聴く人の心に響く楽曲を創り続けています。情熱的なボーカルと繊細なギターワーク、力強いベースライン、そして躍動感あふれるドラムスが織りなすサウンドは、多くのファンを魅了し続けています。</p>
+                <p>エルカホン！<br>
+                そのスタイルは武骨でストレートなロックンロール！<br>
+                聴く者をかりたてるメロディー、<br>
+                それは聴く者に混沌のなかを突き抜ける感覚を呼び覚ます。<br>
+                エルカホン！<br>
+                それは、切って切って切りまくる侍の如し！</p>
             </div>
         </div>
 

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>エルカホン - Official Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,7 +15,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
             background-color: #0a0a0a;
             color: #ffffff;
             line-height: 1.6;
@@ -28,7 +31,7 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 15px 0;
-            border-bottom: 2px solid #dc2626;
+            border-bottom: 2px solid #b91c1c;
         }
 
         .nav-container {
@@ -41,10 +44,21 @@
         }
 
         .logo {
+            font-family: 'Oswald', sans-serif;
             font-size: 1.8rem;
-            font-weight: bold;
-            color: #dc2626;
-            text-shadow: 0 0 10px #dc2626;
+            font-weight: 700;
+            color: #b91c1c;
+            letter-spacing: 2px;
+        }
+
+        .logo-image {
+            height: 40px;
+            width: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-image:hover {
+            opacity: 0.8;
         }
 
         .nav-menu {
@@ -54,23 +68,24 @@
         }
 
         .nav-menu a {
+            font-family: 'Oswald', sans-serif;
             color: #ffffff;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .nav-menu a:hover {
-            color: #dc2626;
-            text-shadow: 0 0 5px #dc2626;
+            color: #b91c1c;
         }
 
         .menu-toggle {
             display: none;
             background: none;
             border: none;
-            color: #dc2626;
+            color: #b91c1c;
             font-size: 1.5rem;
             cursor: pointer;
         }
@@ -79,7 +94,7 @@
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23111" width="1200" height="600"/><circle cx="200" cy="150" r="3" fill="%23dc2626" opacity="0.6"/><circle cx="800" cy="400" r="2" fill="%23dc2626" opacity="0.4"/><circle cx="1000" cy="200" r="4" fill="%23dc2626" opacity="0.5"/></svg>');
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23111" width="1200" height="600"/><circle cx="200" cy="150" r="3" fill="%23b91c1c" opacity="0.6"/><circle cx="800" cy="400" r="2" fill="%23b91c1c" opacity="0.4"/><circle cx="1000" cy="200" r="4" fill="%23b91c1c" opacity="0.5"/></svg>');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -95,40 +110,43 @@
         }
 
         .hero h1 {
+            font-family: 'Oswald', sans-serif;
             font-size: 4rem;
+            font-weight: 700;
             margin-bottom: 20px;
-            color: #dc2626;
-            text-shadow: 0 0 20px #dc2626;
-            animation: glow 2s ease-in-out infinite alternate;
+            color: #b91c1c;
+            letter-spacing: 3px;
         }
 
         .hero p {
+            font-family: 'Noto Sans JP', sans-serif;
             font-size: 1.2rem;
+            font-weight: 400;
             margin-bottom: 30px;
             color: #cccccc;
         }
 
         .cta-button {
+            font-family: 'Oswald', sans-serif;
             display: inline-block;
             padding: 15px 30px;
-            background: linear-gradient(45deg, #dc2626, #991b1b);
+            background: linear-gradient(45deg, #b91c1c, #7f1d1d);
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 600;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+            letter-spacing: 1px;
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
         }
 
         @keyframes glow {
-            from { text-shadow: 0 0 20px #dc2626; }
-            to { text-shadow: 0 0 30px #dc2626, 0 0 40px #dc2626; }
+            from { opacity: 1; }
+            to { opacity: 0.8; }
         }
 
         /* Content Sections */
@@ -141,11 +159,15 @@
         }
 
         .section h2 {
+            font-family: 'Oswald', sans-serif;
             font-size: 2.5rem;
+            font-weight: 600;
             text-align: center;
             margin-bottom: 50px;
-            color: #dc2626;
+            color: #b91c1c;
             position: relative;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .section h2::after {
@@ -153,7 +175,7 @@
             display: block;
             width: 100px;
             height: 3px;
-            background: #dc2626;
+            background: #b91c1c;
             margin: 20px auto;
         }
 
@@ -168,7 +190,7 @@
             max-width: 600px;
             height: 400px;
             background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            border: 3px solid #dc2626;
+            border: 3px solid #b91c1c;
             border-radius: 15px;
             margin: 0 auto 30px;
             display: flex;
@@ -176,7 +198,6 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
         }
 
         .band-photo::before {
@@ -187,14 +208,14 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(45deg, 
-                rgba(220, 38, 38, 0.1) 0%, 
+                rgba(185, 28, 28, 0.1) 0%, 
                 transparent 50%, 
-                rgba(220, 38, 38, 0.1) 100%);
+                rgba(185, 28, 28, 0.1) 100%);
         }
 
         .photo-placeholder {
             font-size: 4rem;
-            color: #dc2626;
+            color: #b91c1c;
             opacity: 0.7;
         }
 
@@ -204,6 +225,7 @@
             text-align: center;
             color: #cccccc;
             font-size: 1.1rem;
+            font-weight: 400;
             line-height: 1.8;
         }
 
@@ -233,7 +255,7 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, #dc2626, transparent, #dc2626);
+            background: linear-gradient(45deg, #b91c1c, transparent, #b91c1c);
             border-radius: 15px;
             z-index: -1;
             opacity: 0;
@@ -252,7 +274,7 @@
         .member-avatar {
             width: 120px;
             height: 120px;
-            background: linear-gradient(135deg, #dc2626, #991b1b);
+            background: linear-gradient(135deg, #b91c1c, #7f1d1d);
             border-radius: 50%;
             margin: 0 auto 20px;
             display: flex;
@@ -260,25 +282,32 @@
             justify-content: center;
             font-size: 3rem;
             color: #ffffff;
-            box-shadow: 0 5px 20px rgba(220, 38, 38, 0.4);
         }
 
         .member-name {
+            font-family: 'Oswald', sans-serif;
             font-size: 1.3rem;
-            color: #dc2626;
+            color: #b91c1c;
             margin-bottom: 10px;
-            font-weight: bold;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .member-role {
+            font-family: 'Oswald', sans-serif;
             color: #cccccc;
             font-size: 1rem;
+            font-weight: 400;
             margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .member-description {
+            font-family: 'Noto Sans JP', sans-serif;
             color: #999999;
             font-size: 0.9rem;
+            font-weight: 400;
             line-height: 1.6;
         }
 
@@ -294,7 +323,7 @@
             background: #1a1a1a;
             padding: 25px;
             border-radius: 10px;
-            border-left: 4px solid #dc2626;
+            border-left: 4px solid #b91c1c;
             transition: transform 0.3s ease;
         }
 
@@ -302,10 +331,21 @@
             transform: translateY(-5px);
         }
 
-        .news-date {
-            color: #dc2626;
-            font-size: 0.9rem;
+        .news-item h3 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 500;
+            font-size: 1.2rem;
             margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .news-date {
+            font-family: 'Oswald', sans-serif;
+            color: #b91c1c;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
         /* Music Section */
@@ -317,10 +357,18 @@
             margin-top: 40px;
         }
 
+        .music-player h3 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 500;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
         .album-cover {
             width: 200px;
             height: 200px;
-            background: linear-gradient(45deg, #dc2626, #991b1b);
+            background: linear-gradient(45deg, #b91c1c, #7f1d1d);
             border-radius: 10px;
             margin: 0 auto 20px;
             display: flex;
@@ -352,12 +400,14 @@
         }
 
         .live-item:hover {
-            background: rgba(220, 38, 38, 0.1);
+            background: rgba(185, 28, 28, 0.1);
         }
 
         .live-date {
-            color: #dc2626;
-            font-weight: bold;
+            font-family: 'Oswald', sans-serif;
+            color: #b91c1c;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         /* Footer */
@@ -365,7 +415,7 @@
             background: #111111;
             padding: 50px 0 30px;
             text-align: center;
-            border-top: 2px solid #dc2626;
+            border-top: 2px solid #b91c1c;
         }
 
         .social-links {
@@ -382,7 +432,7 @@
         }
 
         .social-links a:hover {
-            color: #dc2626;
+            color: #b91c1c;
         }
 
         /* Responsive Design */
@@ -498,7 +548,11 @@
     <!-- Header -->
     <header class="header">
         <div class="nav-container">
-            <div class="logo">エルカホン</div>
+            <!-- デフォルトはテキストロゴ、画像が利用可能な場合は下記を有効化 -->
+            <div class="logo">
+                <img src="images/toplogo.jpg" alt="エルカホン" class="logo-image">
+            </div>
+            
             <nav>
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="#home">Home</a></li>

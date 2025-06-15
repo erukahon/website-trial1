@@ -54,6 +54,7 @@
         .logo-image {
             height: 40px;
             width: auto;
+            max-width: 200px;
             transition: opacity 0.3s ease;
         }
 
@@ -99,6 +100,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         .hero-image {
@@ -110,6 +112,7 @@
             object-fit: cover;
             object-position: center;
             z-index: 1;
+            max-width: 100%;
         }
 
         .hero-overlay {
@@ -364,6 +367,25 @@
             color: #ffffff;
         }
 
+        .cta-button {
+            font-family: 'Oswald', sans-serif;
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #b91c1c, #7f1d1d);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            margin: 0 10px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
         /* Live Section */
         .live-schedule {
             background: #1a1a1a;
@@ -443,12 +465,21 @@
                 display: flex;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            .logo-image {
+                height: 30px;
+                max-width: 150px;
             }
 
-            .hero p {
-                font-size: 1rem;
+            .hero {
+                height: 70vh;
+                min-height: 400px;
+            }
+
+            .hero-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
             }
 
             .section {
@@ -479,15 +510,29 @@
                 height: 150px;
                 font-size: 2rem;
             }
+
+            .cta-button {
+                margin: 5px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: fit-content;
+            }
         }
 
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
             .nav-container {
                 padding: 0 15px;
+            }
+
+            .logo-image {
+                height: 25px;
+                max-width: 120px;
+            }
+
+            .hero {
+                height: 60vh;
+                min-height: 350px;
             }
 
             .section {
@@ -512,12 +557,15 @@
 
         /* Tablet specific adjustments */
         @media (min-width: 769px) and (max-width: 1024px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-
             .nav-menu {
                 gap: 20px;
+            }
+
+            .hero-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
             }
 
             .news-grid {
@@ -526,6 +574,16 @@
 
             .members-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Large desktop adjustments */
+        @media (min-width: 1200px) {
+            .hero-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
             }
         }
     </style>
@@ -627,8 +685,8 @@
             <h3>Latest Single: "三つの心"</h3>
             <p>2025年5月リリースの最新シングル。3人の想いが込められた楽曲です。各種配信サービスで好評配信中！</p>
             <div style="margin-top: 20px;">
-                <a href="#" class="cta-button" style="margin: 0 10px;">Spotify</a>
-                <a href="#" class="cta-button" style="margin: 0 10px;">Apple Music</a>
+                <a href="#" class="cta-button">Spotify</a>
+                <a href="#" class="cta-button">Apple Music</a>
             </div>
         </div>
     </section>

@@ -282,6 +282,14 @@
             justify-content: center;
             font-size: 3rem;
             color: #ffffff;
+            overflow: hidden;
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
         .member-name {
@@ -672,19 +680,25 @@
         <!-- Members -->
         <div class="members-grid">
             <div class="member-card">
-                <div class="member-avatar">🎤</div>
+                <div class="member-avatar">
+                    <img src="images/masaru.jpg" alt="山田太郎">
+                </div>
                 <div class="member-name">山田 太郎</div>
                 <div class="member-role">Vocal / Guitar</div>
                 <div class="member-description">バンドの中心的存在。力強いボーカルと繊細なギターワークで、楽曲に命を吹き込む。</div>
             </div>
             <div class="member-card">
-                <div class="member-avatar">🎸</div>
+                <div class="member-avatar">
+                    <img src="images/hiro.jpg" alt="佐藤花子">
+                </div>
                 <div class="member-name">佐藤 花子</div>
                 <div class="member-role">Bass</div>
                 <div class="member-description">バンドの土台を支える重厚なベースライン。安定感のあるプレイでリズム隊を牽引。</div>
             </div>
             <div class="member-card">
-                <div class="member-avatar">🥁</div>
+                <div class="member-avatar">
+                    <img src="images/makoto.jpg" alt="田中次郎">
+                </div>
                 <div class="member-name">田中 次郎</div>
                 <div class="member-role">Drums</div>
                 <div class="member-description">躍動感あふれるドラムプレイで、バンドサウンドにエネルギーを注入する。</div>

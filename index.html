@@ -51,11 +51,17 @@
             letter-spacing: 2px;
         }
 
+        .logo-link {
+            text-decoration: none;
+            display: inline-block;
+        }
+
         .logo-image {
             height: 40px;
             width: auto;
             max-width: 200px;
             transition: opacity 0.3s ease;
+            cursor: pointer;
         }
 
         .logo-image:hover {
@@ -109,8 +115,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center;
+            object-fit: contain;
+            object-position: center top;
             z-index: 1;
             max-width: 100%;
         }
@@ -471,15 +477,15 @@
             }
 
             .hero {
-                height: 70vh;
-                min-height: 400px;
+                height: 80vh;
+                min-height: 500px;
             }
 
             .hero-image {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
-                object-position: center;
+                object-fit: contain;
+                object-position: center top;
             }
 
             .section {
@@ -531,8 +537,15 @@
             }
 
             .hero {
-                height: 60vh;
-                min-height: 350px;
+                height: 70vh;
+                min-height: 400px;
+            }
+
+            .hero-image {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                object-position: center top;
             }
 
             .section {
@@ -564,8 +577,8 @@
             .hero-image {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
-                object-position: center;
+                object-fit: contain;
+                object-position: center top;
             }
 
             .news-grid {
@@ -582,8 +595,8 @@
             .hero-image {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
-                object-position: center;
+                object-fit: contain;
+                object-position: center top;
             }
         }
     </style>
@@ -594,7 +607,9 @@
         <div class="nav-container">
             <!-- デフォルトはテキストロゴ、画像が利用可能な場合は下記を有効化 -->
             <div class="logo">
-                <img src="images/toplogo.jpg" alt="エルカホン" class="logo-image">
+                <a href="#home" class="logo-link">
+                    <img src="images/toplogo.jpg" alt="エルカホン" class="logo-image">
+                </a>
             </div>
             
             <nav>

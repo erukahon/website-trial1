@@ -260,7 +260,8 @@
             border: 2px solid transparent;
             transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
+            cursor: pointer;
         }
 
         .member-card::before {
@@ -284,6 +285,41 @@
         .member-card:hover {
             transform: translateY(-5px);
             background: #222222;
+        }
+
+        /* Member popup styles */
+        .member-popup {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.95);
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            width: 260px;
+            max-width: 90vw;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid #b91c1c;
+            pointer-events: none;
+            text-align: left;
+        }
+
+        .member-card:hover .member-popup {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .member-card.active .member-popup {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
         }
 
         .member-avatar {
@@ -695,6 +731,9 @@
         <!-- Members -->
         <div class="members-grid">
             <div class="member-card">
+                <div class="member-popup">
+                    バンドの魂とも言える存在。10代からギターを握り続け、独自のサウンドを追求。荒々しくも繊細なプレイスタイルで、聴く者の心を鷲掴みにする。「音楽は生きることそのもの」が信条。
+                </div>
                 <div class="member-avatar">
                     <img src="images/masaru.jpg" alt="マサル">
                 </div>
@@ -702,6 +741,9 @@
                 <div class="member-role">Vocal / Guitar</div>
             </div>
             <div class="member-card">
+                <div class="member-popup">
+                    クールな外見とは裏腹に、情熱的なベースラインでバンドを支える縁の下の力持ち。ジャズからパンクまで幅広い音楽的バックグラウンドを持つ。無言の存在感で観客を魅了する。
+                </div>
                 <div class="member-avatar">
                     <img src="images/hiro.jpg" alt="ヒロ">
                 </div>
@@ -709,6 +751,9 @@
                 <div class="member-role">Bass</div>
             </div>
             <div class="member-card">
+                <div class="member-popup">
+                    バンド最年少ながら、爆発的なエネルギーでドラムセットを叩きまくる。スピード感溢れるプレイと独創的なリズムパターンが持ち味。「ドラムは心臓の鼓動」と語る情熱家。
+                </div>
                 <div class="member-avatar">
                     <img src="images/makoto.jpg" alt="マコト">
                 </div>
@@ -826,6 +871,38 @@
             } else {
                 header.style.background = 'rgba(0, 0, 0, 0.9)';
             }
+        });
+
+        // Member card tap functionality for mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.member-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Check if it's a touch device
+                    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                        e.preventDefault();
+                        
+                        // Remove active class from all cards
+                        document.querySelectorAll('.member-card').forEach(c => c.classList.remove('active'));
+                        
+                        // Add active class to clicked card
+                        this.classList.add('active');
+                        
+                        // Remove active class after 3 seconds
+                        setTimeout(() => {
+                            this.classList.remove('active');
+                        }, 3000);
+                    }
+                });
+            });
+            
+            // Close popup when clicking outside on mobile
+            document.addEventListener('click', function(e) {
+                if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                    if (!e.target.closest('.member-card')) {
+                        document.querySelectorAll('.member-card').forEach(c => c.classList.remove('active'));
+                    }
+                }
+            });
         });
     </script>
 </body>

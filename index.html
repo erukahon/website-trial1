@@ -31,8 +31,8 @@
 
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
+            background-color: #ffffff;
+            color: #333333;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -42,11 +42,11 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 15px 0;
-            border-bottom: 2px solid #ffffff;
+            border-bottom: 2px solid #333333;
         }
 
         .nav-container {
@@ -91,7 +91,7 @@
 
         .nav-menu a {
             font-family: 'Oswald', sans-serif;
-            color: #ffffff;
+            color: #333333;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
@@ -107,7 +107,7 @@
             display: none;
             background: none;
             border: none;
-            color: #ffffff;
+            color: #333333;
             font-size: 1.5rem;
             cursor: pointer;
         }
@@ -116,7 +116,7 @@
         .hero {
             height: auto;
             min-height: 60vh;
-            background: #0a0a0a;
+            background: #000000;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -204,7 +204,7 @@
             width: 100%;
             max-width: 600px;
             height: 400px;
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            background: linear-gradient(135deg, #f5f5f5, #e5e5e5);
             border: 3px solid #b91c1c;
             border-radius: 0;
             margin: 0 auto 30px;
@@ -238,7 +238,7 @@
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
-            color: #cccccc;
+            color: #666666;
             font-size: 1.3rem;
             font-weight: 500;
             line-height: 2.0;
@@ -253,7 +253,7 @@
         }
 
         .member-card {
-            background: #1a1a1a;
+            background: #f8f8f8;
             padding: 30px;
             border-radius: 0;
             text-align: center;
@@ -284,7 +284,7 @@
 
         .member-card:hover {
             transform: translateY(-5px);
-            background: #222222;
+            background: #f0f0f0;
         }
 
         /* Member popup styles */
@@ -356,7 +356,7 @@
 
         .member-role {
             font-family: 'Oswald', sans-serif;
-            color: #cccccc;
+            color: #666666;
             font-size: 1rem;
             font-weight: 400;
             margin-bottom: 15px;
@@ -366,7 +366,7 @@
 
         .member-description {
             font-family: 'Noto Sans JP', sans-serif;
-            color: #999999;
+            color: #888888;
             font-size: 0.9rem;
             font-weight: 400;
             line-height: 1.6;
@@ -381,7 +381,7 @@
         }
 
         .news-item {
-            background: #1a1a1a;
+            background: #f8f8f8;
             padding: 25px;
             border-radius: 0;
             border-left: 4px solid #b91c1c;
@@ -398,6 +398,7 @@
             font-size: 1.2rem;
             margin-bottom: 10px;
             letter-spacing: 0.5px;
+            color: #333333;
         }
 
         .news-date {
@@ -415,7 +416,7 @@
             width: 100%;
             overflow: hidden;
             margin-top: 40px;
-            background: #1a1a1a;
+            background: #f8f8f8;
             padding: 40px 20px;
             border-radius: 0;
         }
@@ -446,7 +447,7 @@
         }
 
         .music-item {
-            background: #1a1a1a;
+            background: #f8f8f8;
             padding: 30px;
             border-radius: 0;
             text-align: center;
@@ -480,7 +481,7 @@
 
         .music-item:hover {
             transform: translateY(-5px);
-            background: #222222;
+            background: #f0f0f0;
         }
 
         .carousel-nav {
@@ -571,7 +572,7 @@
             font-size: 1.5rem;
             margin-bottom: 15px;
             letter-spacing: 1px;
-            color: #ffffff;
+            color: #333333;
         }
 
         .album-cover {
@@ -630,7 +631,7 @@
 
         /* Live Section */
         .live-schedule {
-            background: #1a1a1a;
+            background: #f8f8f8;
             border-radius: 0;
             overflow: hidden;
             margin-top: 40px;
@@ -638,7 +639,7 @@
 
         .live-item {
             padding: 20px 30px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #ddd;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -662,10 +663,10 @@
 
         /* Footer */
         .footer {
-            background: #111111;
+            background: #333333;
             padding: 50px 0 30px;
             text-align: center;
-            border-top: 2px solid #ffffff;
+            border-top: 2px solid #333333;
         }
 
         .social-links {
@@ -697,7 +698,7 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: rgba(0, 0, 0, 0.95);
+                background: rgba(255, 255, 255, 0.95);
                 flex-direction: column;
                 padding: 20px;
                 gap: 15px;
@@ -751,7 +752,7 @@
             }
 
             .music-carousel {
-                background: #1a1a1a;
+                background: #f8f8f8;
                 padding: 30px 15px;
             }
 
@@ -916,14 +917,14 @@
     <!-- About Section -->
     <section class="section" id="about">
         <div class="band-photo-section">
-            <div class="band-intro">
+            <!-- <div class="band-intro">
                 <p>エルカホン！<br>
                 そのスタイルは武骨でストレートなロックンロール！<br>
                 聴く者をかりたてるメロディー、<br>
                 それは聴く者に混沌のなかを突き抜ける感覚を呼び覚ます。<br>
                 エルカホン！<br>
                 それは、切って切って切りまくる侍の如し！</p>
-            </div>
+            </div> -->
         </div>
 
         <!-- Members -->
@@ -1099,9 +1100,9 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
             } else {
-                header.style.background = 'rgba(0, 0, 0, 0.9)';
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
             }
         });
 

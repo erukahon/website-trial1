@@ -206,7 +206,7 @@
             height: 400px;
             background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
             border: 3px solid #b91c1c;
-            border-radius: 15px;
+            border-radius: 0;
             margin: 0 auto 30px;
             display: flex;
             align-items: center;
@@ -255,7 +255,7 @@
         .member-card {
             background: #1a1a1a;
             padding: 30px;
-            border-radius: 15px;
+            border-radius: 0;
             text-align: center;
             border: 2px solid transparent;
             transition: all 0.3s ease;
@@ -272,7 +272,7 @@
             right: -2px;
             bottom: -2px;
             background: linear-gradient(45deg, #b91c1c, transparent, #b91c1c);
-            border-radius: 15px;
+            border-radius: 0;
             z-index: -1;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -296,7 +296,7 @@
             background: rgba(0, 0, 0, 0.95);
             color: #ffffff;
             padding: 12px;
-            border-radius: 10px;
+            border-radius: 0;
             font-size: 0.8rem;
             line-height: 1.3;
             width: 320px;
@@ -328,7 +328,7 @@
             width: 120px;
             height: 120px;
             background: linear-gradient(135deg, #b91c1c, #7f1d1d);
-            border-radius: 50%;
+            border-radius: 0;
             margin: 0 auto 20px;
             display: flex;
             align-items: center;
@@ -383,7 +383,7 @@
         .news-item {
             background: #1a1a1a;
             padding: 25px;
-            border-radius: 10px;
+            border-radius: 0;
             border-left: 4px solid #b91c1c;
             transition: transform 0.3s ease;
         }
@@ -413,28 +413,95 @@
         .music-player {
             background: #1a1a1a;
             padding: 40px;
-            border-radius: 15px;
+            border-radius: 0;
             text-align: center;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .music-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
             margin-top: 40px;
         }
 
-        .music-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
+        .music-slides {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 200%;
+        }
+
+        .music-slide {
+            min-width: 50%;
+            flex-shrink: 0;
         }
 
         .music-item {
             background: #1a1a1a;
             padding: 30px;
-            border-radius: 15px;
+            border-radius: 0;
             text-align: center;
             transition: transform 0.3s ease;
+            margin: 0 10px;
         }
 
         .music-item:hover {
             transform: translateY(-5px);
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .carousel-btn {
+            background: #b91c1c;
+            color: #ffffff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 0;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: #991b1b;
+            transform: scale(1.1);
+        }
+
+        .carousel-btn:disabled {
+            background: #666666;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 0;
+            background: #666666;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #b91c1c;
         }
 
         .music-player h3 {
@@ -457,7 +524,7 @@
             width: 200px;
             height: 200px;
             background: linear-gradient(45deg, #b91c1c, #7f1d1d);
-            border-radius: 10px;
+            border-radius: 0;
             margin: 0 auto 20px;
             display: flex;
             align-items: center;
@@ -481,7 +548,7 @@
             background: linear-gradient(45deg, #b91c1c, #7f1d1d);
             color: #ffffff;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 0;
             font-weight: 600;
             text-transform: uppercase;
             transition: all 0.3s ease;
@@ -496,7 +563,7 @@
         /* Live Section */
         .live-schedule {
             background: #1a1a1a;
-            border-radius: 15px;
+            border-radius: 0;
             overflow: hidden;
             margin-top: 40px;
         }
@@ -617,6 +684,13 @@
 
             .music-item {
                 padding: 25px;
+                margin: 0 5px;
+            }
+
+            .carousel-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
             }
 
             .album-cover {
@@ -844,26 +918,40 @@
     <!-- Music Section -->
     <section class="section" id="music">
         <h2>Music</h2>
-        <div class="music-grid">
-            <div class="music-item">
-                <div class="album-cover">
-                    <img src="images/cringpolicies.jpg" alt="Cring Policies アルバムカバー">
+        <div class="music-carousel">
+            <div class="music-slides" id="musicSlides">
+                <div class="music-slide">
+                    <div class="music-item">
+                        <div class="album-cover">
+                            <img src="images/cringpolicies.jpg" alt="Cring Policies アルバムカバー">
+                        </div>
+                        <h3>Cring Policies</h3>
+                        <div style="margin-top: 20px;">
+                            <a href="https://music.amazon.co.jp/albums/B0FBGR52N2?marketplaceId=A1VC38T7YXB528&musicTerritory=JP&ref=dm_sh_Bx593dOice35T5JBaU5PZ3WSv" target="_blank" class="cta-button">Amazon Music</a>
+                            <a href="https://music.apple.com/jp/album/cring-policies/1817606266" target="_blank" class="cta-button">Apple Music</a>
+                        </div>
+                    </div>
                 </div>
-                <h3>Cring Policies</h3>
-                <div style="margin-top: 20px;">
-                    <a href="https://music.amazon.co.jp/albums/B0FBGR52N2?marketplaceId=A1VC38T7YXB528&musicTerritory=JP&ref=dm_sh_Bx593dOice35T5JBaU5PZ3WSv" target="_blank" class="cta-button">Amazon Music</a>
-                    <a href="https://music.apple.com/jp/album/cring-policies/1817606266" target="_blank" class="cta-button">Apple Music</a>
+                <div class="music-slide">
+                    <div class="music-item">
+                        <div class="album-cover">
+                            <img src="images/infighters.jpg" alt="INFIGHTERS アルバムカバー">
+                        </div>
+                        <h3>INFIGHTERS</h3>
+                        <div style="margin-top: 20px;">
+                            <a href="https://music.amazon.co.jp/albums/B0FBGSDSN3?marketplaceId=A1VC38T7YXB528&musicTerritory=JP&ref=dm_sh_robIV3BOzxHxqcyXtRAQD8jJS" target="_blank" class="cta-button">Amazon Music</a>
+                            <a href="https://music.apple.com/jp/album/infighters/1817610378" target="_blank" class="cta-button">Apple Music</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="music-item">
-                <div class="album-cover">
-                    <img src="images/infighters.jpg" alt="INFIGHTERS アルバムカバー">
+            <div class="carousel-nav">
+                <button class="carousel-btn" id="prevBtn">‹</button>
+                <div class="carousel-indicators">
+                    <div class="indicator active" data-slide="0"></div>
+                    <div class="indicator" data-slide="1"></div>
                 </div>
-                <h3>INFIGHTERS</h3>
-                <div style="margin-top: 20px;">
-                    <a href="https://music.amazon.co.jp/albums/B0FBGSDSN3?marketplaceId=A1VC38T7YXB528&musicTerritory=JP&ref=dm_sh_robIV3BOzxHxqcyXtRAQD8jJS" target="_blank" class="cta-button">Amazon Music</a>
-                    <a href="https://music.apple.com/jp/album/infighters/1817610378" target="_blank" class="cta-button">Apple Music</a>
-                </div>
+                <button class="carousel-btn" id="nextBtn">›</button>
             </div>
         </div>
     </section>
@@ -876,20 +964,6 @@
                 <div>
                     <div class="live-date">2025.07.15</div>
                     <div>東京 - Shibuya O-EAST</div>
-                </div>
-                <div>19:00 開演</div>
-            </div>
-            <div class="live-item">
-                <div>
-                    <div class="live-date">2025.07.20</div>
-                    <div>東京 - 渋谷WOMB（アコースティック）</div>
-                </div>
-                <div>18:00 開演</div>
-            </div>
-            <div class="live-item">
-                <div>
-                    <div class="live-date">2025.08.05</div>
-                    <div>大阪 - なんばHatch</div>
                 </div>
                 <div>19:00 開演</div>
             </div>
@@ -942,8 +1016,70 @@
             }
         });
 
-        // Member card tap functionality for mobile
+        // Music carousel functionality
         document.addEventListener('DOMContentLoaded', function() {
+            const musicSlides = document.getElementById('musicSlides');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const indicators = document.querySelectorAll('.indicator');
+            let currentSlide = 0;
+            const totalSlides = 2;
+
+            function updateCarousel() {
+                const translateX = -currentSlide * 50;
+                musicSlides.style.transform = `translateX(${translateX}%)`;
+                
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+                
+                // Update button states
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+            }
+
+            function nextSlide() {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateCarousel();
+                }
+            }
+
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateCarousel();
+                }
+            }
+
+            function goToSlide(slideIndex) {
+                currentSlide = slideIndex;
+                updateCarousel();
+            }
+
+            // Event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => goToSlide(index));
+            });
+
+            // Auto-play functionality (optional)
+            setInterval(() => {
+                if (currentSlide < totalSlides - 1) {
+                    nextSlide();
+                } else {
+                    currentSlide = 0;
+                    updateCarousel();
+                }
+            }, 5000); // Change slide every 5 seconds
+
+            // Initialize
+            updateCarousel();
+
+            // Member card tap functionality for mobile
             document.querySelectorAll('.member-card').forEach(card => {
                 card.addEventListener('click', function(e) {
                     // Check if it's a touch device

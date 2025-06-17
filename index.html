@@ -628,6 +628,11 @@
             filter: none;
             backdrop-filter: none;
             -webkit-filter: none;
+            touch-action: pan-y;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .music-slides-container {
@@ -1434,17 +1439,21 @@
             });
         }
 
-        // Music carousel functionality (手動操作のみ - 自動スクロール完全無効)
+        // Music carousel functionality (手動操作のみ + タッチスワイプ対応)
         function initMusicCarousel() {
             const musicSlides = document.getElementById('musicSlides');
             const musicPrevBtn = document.getElementById('musicPrevBtn');
             const musicNextBtn = document.getElementById('musicNextBtn');
             const musicIndicators = document.querySelectorAll('.music-indicator');
+            const musicCarousel = document.querySelector('.music-carousel');
             let currentMusicSlide = 0;
             const totalMusicSlides = 3;
 
-            // 自動スクロール機能を完全に無効化
-            // setInterval, setTimeout, requestAnimationFrame等は一切使用しない
+            // タッチ関連の変数
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let isDragging = false;
+            const minSwipeDistance = 50; // 最小スワイプ距離（px）
 
             function updateMusicCarousel() {
                 // 循環インデックスを正規化
@@ -1484,12 +1493,72 @@
                 updateMusicCarousel();
             }
 
-            // Event listeners (手動操作のみ)
+            function handleSwipe() {
+                const swipeDistance = touchEndX - touchStartX;
+                
+                if (Math.abs(swipeDistance) > minSwipeDistance) {
+                    if (swipeDistance > 0) {
+                        // 右スワイプ（左へ移動）
+                        prevMusicSlide();
+                    } else {
+                        // 左スワイプ（右へ移動）
+                        nextMusicSlide();
+                    }
+                }
+            }
+
+            // マウス・タッチイベントリスナー（ボタン操作）
             musicNextBtn.addEventListener('click', nextMusicSlide);
             musicPrevBtn.addEventListener('click', prevMusicSlide);
 
             musicIndicators.forEach((indicator, index) => {
                 indicator.addEventListener('click', () => goToMusicSlide(index));
+            });
+
+            // タッチイベントリスナー（スワイプ操作）
+            musicCarousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                isDragging = true;
+            }, { passive: true });
+
+            musicCarousel.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                // スクロールを防ぐ
+                e.preventDefault();
+            }, { passive: false });
+
+            musicCarousel.addEventListener('touchend', (e) => {
+                if (!isDragging) return;
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                isDragging = false;
+            }, { passive: true });
+
+            // マウスイベントリスナー（PC用ドラッグ操作）
+            musicCarousel.addEventListener('mousedown', (e) => {
+                touchStartX = e.clientX;
+                isDragging = true;
+                musicCarousel.style.cursor = 'grabbing';
+            });
+
+            musicCarousel.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+            });
+
+            musicCarousel.addEventListener('mouseup', (e) => {
+                if (!isDragging) return;
+                touchEndX = e.clientX;
+                handleSwipe();
+                isDragging = false;
+                musicCarousel.style.cursor = 'grab';
+            });
+
+            musicCarousel.addEventListener('mouseleave', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    musicCarousel.style.cursor = 'grab';
+                }
             });
 
             // CSS自動アニメーションも完全無効化
@@ -1498,10 +1567,13 @@
             musicSlides.style.animationDuration = '0s';
             musicSlides.style.animationIterationCount = '0';
 
+            // カーソルスタイル設定
+            musicCarousel.style.cursor = 'grab';
+
             // Initialize
             updateMusicCarousel();
             
-            console.log('Music carousel initialized - MANUAL ONLY (NO AUTO-SCROLL)');
+            console.log('Music carousel initialized - MANUAL + SWIPE ENABLED');
         }
 
         // Member card tap functionality for mobile

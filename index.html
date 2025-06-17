@@ -615,6 +615,9 @@
         .music-section {
             background: #ffffff;
             padding: 60px 0;
+            filter: none;
+            backdrop-filter: none;
+            -webkit-filter: none;
         }
 
         .music-carousel {
@@ -622,12 +625,18 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            filter: none;
+            backdrop-filter: none;
+            -webkit-filter: none;
         }
 
         .music-slides-container {
             position: relative;
             overflow: hidden;
             border-radius: 0;
+            filter: none;
+            backdrop-filter: none;
+            -webkit-filter: none;
         }
 
         .music-slides {
@@ -666,6 +675,9 @@
             object-position: center;
             display: block;
             margin: 0 auto;
+            filter: none;
+            backdrop-filter: none;
+            -webkit-filter: none;
         }
 
         .music-nav {
@@ -684,9 +696,11 @@
             font-size: 1.5rem;
             color: #333333;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 10;
+            filter: none;
+            backdrop-filter: none;
+            -webkit-filter: none;
         }
 
         .music-nav:hover {
@@ -719,6 +733,9 @@
             margin-top: 20px;
             margin-bottom: 20px;
             padding-bottom: 10px;
+            filter: none;
+            backdrop-filter: none;
+            -webkit-filter: none;
         }
 
         .music-indicator {
@@ -728,6 +745,9 @@
             background: #ddd;
             cursor: pointer;
             transition: all 0.3s ease;
+            filter: none;
+            backdrop-filter: none;
+            -webkit-filter: none;
         }
 
         .music-indicator:hover {
@@ -974,6 +994,9 @@
             .music-slide img {
                 max-width: 100%;
                 height: auto;
+                filter: none;
+                backdrop-filter: none;
+                -webkit-filter: none;
             }
 
             .music-nav {
@@ -1411,7 +1434,7 @@
             });
         }
 
-        // Music carousel functionality (完全手動操作のみ)
+        // Music carousel functionality (手動操作のみ - 自動スクロール完全無効)
         function initMusicCarousel() {
             const musicSlides = document.getElementById('musicSlides');
             const musicPrevBtn = document.getElementById('musicPrevBtn');
@@ -1420,11 +1443,13 @@
             let currentMusicSlide = 0;
             const totalMusicSlides = 3;
 
-            // 自動スクロール関連の変数・タイマーを確実に無効化
-            let autoPlayInterval = null;
-            let autoPlayTimeout = null;
+            // 自動スクロール機能を完全に無効化
+            // setInterval, setTimeout, requestAnimationFrame等は一切使用しない
 
             function updateMusicCarousel() {
+                // 循環インデックスを正規化
+                currentMusicSlide = ((currentMusicSlide % totalMusicSlides) + totalMusicSlides) % totalMusicSlides;
+                
                 const translateX = -currentMusicSlide * 100;
                 musicSlides.style.transform = `translateX(${translateX}%)`;
                 
@@ -1433,56 +1458,28 @@
                     indicator.classList.toggle('active', index === currentMusicSlide);
                 });
                 
-                // Update button states
-                musicPrevBtn.disabled = currentMusicSlide === 0;
-                musicNextBtn.disabled = currentMusicSlide === totalMusicSlides - 1;
+                // ボタンは常に有効
+                musicPrevBtn.disabled = false;
+                musicNextBtn.disabled = false;
             }
 
             function nextMusicSlide() {
-                // 念のため自動再生を停止
-                if (autoPlayInterval) {
-                    clearInterval(autoPlayInterval);
-                    autoPlayInterval = null;
+                currentMusicSlide++;
+                if (currentMusicSlide >= totalMusicSlides) {
+                    currentMusicSlide = 0;
                 }
-                if (autoPlayTimeout) {
-                    clearTimeout(autoPlayTimeout);
-                    autoPlayTimeout = null;
-                }
-                
-                if (currentMusicSlide < totalMusicSlides - 1) {
-                    currentMusicSlide++;
-                    updateMusicCarousel();
-                }
+                updateMusicCarousel();
             }
 
             function prevMusicSlide() {
-                // 念のため自動再生を停止
-                if (autoPlayInterval) {
-                    clearInterval(autoPlayInterval);
-                    autoPlayInterval = null;
+                currentMusicSlide--;
+                if (currentMusicSlide < 0) {
+                    currentMusicSlide = totalMusicSlides - 1;
                 }
-                if (autoPlayTimeout) {
-                    clearTimeout(autoPlayTimeout);
-                    autoPlayTimeout = null;
-                }
-                
-                if (currentMusicSlide > 0) {
-                    currentMusicSlide--;
-                    updateMusicCarousel();
-                }
+                updateMusicCarousel();
             }
 
             function goToMusicSlide(slideIndex) {
-                // 念のため自動再生を停止
-                if (autoPlayInterval) {
-                    clearInterval(autoPlayInterval);
-                    autoPlayInterval = null;
-                }
-                if (autoPlayTimeout) {
-                    clearTimeout(autoPlayTimeout);
-                    autoPlayTimeout = null;
-                }
-                
                 currentMusicSlide = slideIndex;
                 updateMusicCarousel();
             }
@@ -1495,14 +1492,16 @@
                 indicator.addEventListener('click', () => goToMusicSlide(index));
             });
 
-            // CSSアニメーションも確実に無効化
+            // CSS自動アニメーションも完全無効化
             musicSlides.style.animation = 'none';
             musicSlides.style.animationPlayState = 'paused';
+            musicSlides.style.animationDuration = '0s';
+            musicSlides.style.animationIterationCount = '0';
 
-            // Initialize (自動スクロールなし)
+            // Initialize
             updateMusicCarousel();
             
-            console.log('Music carousel initialized - AUTO-SCROLL DISABLED');
+            console.log('Music carousel initialized - MANUAL ONLY (NO AUTO-SCROLL)');
         }
 
         // Member card tap functionality for mobile

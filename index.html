@@ -46,7 +46,7 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 15px 0;
-            border-bottom: 2px solid #333333;
+            border-bottom: 2px solid #b91c1c;
         }
 
         .nav-container {
@@ -648,8 +648,10 @@
 
         .music-slides {
             display: flex;
-            animation: musicSlideInfinite 15s linear infinite;
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 2px;
+            filter: none;
+            backdrop-filter: none;
         }
 
         .music-slides.manual-control {
@@ -670,7 +672,7 @@
         }
 
         .music-slide {
-            min-width: 100%;
+            min-width: calc(100% - 1px);
             flex-shrink: 0;
             position: relative;
         }
@@ -1047,7 +1049,7 @@
             background: #000000;
             padding: 50px 0 30px;
             text-align: center;
-            border-top: 2px solid #333333;
+            border-top: 2px solid #b91c1c;
             color: #ffffff;
         }
 
@@ -1752,7 +1754,7 @@
             });
         }
 
-        // Video carousel functionality (手動操作のみ + タッチスワイプ対応)
+        // Video carousel functionality (無限スクロール + タッチスワイプ対応)
         function initVideoCarousel() {
             const videoSlides = document.getElementById('videoSlides');
             const videoPrevBtn = document.getElementById('videoPrevBtn');
@@ -1761,46 +1763,107 @@
             const videoCarousel = document.querySelector('.video-carousel');
             let currentVideoSlide = 0;
             const totalVideoSlides = 2; // 2つの動画
+            const totalClones = totalVideoSlides * 3; // 3セット分作成（前、現在、後）
 
             // タッチ関連の変数
             let touchStartX = 0;
             let touchEndX = 0;
             let isDragging = false;
             const minSwipeDistance = 50;
+            let isTransitioning = false;
 
-            function updateVideoCarousel() {
-                currentVideoSlide = ((currentVideoSlide % totalVideoSlides) + totalVideoSlides) % totalVideoSlides;
+            // 初期化：スライドを複製して無限スクロール用に準備
+            function setupInfiniteSlides() {
+                const originalSlides = Array.from(videoSlides.children);
+                videoSlides.innerHTML = '';
+                
+                // 3セット分のスライドを作成（前、現在、後）
+                for (let set = 0; set < 3; set++) {
+                    originalSlides.forEach(slide => {
+                        const clone = slide.cloneNode(true);
+                        videoSlides.appendChild(clone);
+                    });
+                }
+                
+                // 初期位置を中央セットに設定
+                currentVideoSlide = totalVideoSlides; // 中央セットの最初
+                // トランジションなしで初期位置を設定
+                videoSlides.style.transition = 'none';
+                videoSlides.style.transform = `translateX(-${currentVideoSlide * 100}%)`;
+                
+                // 次のフレームでトランジションを有効化
+                requestAnimationFrame(() => {
+                    videoSlides.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                });
+            }
+
+            function updateVideoCarousel(smooth = true) {
+                if (smooth) {
+                    videoSlides.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                } else {
+                    videoSlides.style.transition = 'none';
+                }
                 
                 const translateX = -currentVideoSlide * 100;
                 videoSlides.style.transform = `translateX(${translateX}%)`;
                 
+                // インジケーターの更新（実際のスライド位置で計算）
+                const actualSlide = currentVideoSlide % totalVideoSlides;
                 videoIndicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === currentVideoSlide);
+                    indicator.classList.toggle('active', index === actualSlide);
                 });
                 
-                // ボタンは常に有効（循環ナビゲーション）
+                // ボタンは常に有効
                 videoPrevBtn.disabled = false;
                 videoNextBtn.disabled = false;
             }
 
-            function nextVideoSlide() {
-                currentVideoSlide++;
-                if (currentVideoSlide >= totalVideoSlides) {
-                    currentVideoSlide = 0;
+            function resetPosition() {
+                // 端に近づいたら中央にリセット
+                if (currentVideoSlide >= totalVideoSlides * 2) {
+                    setTimeout(() => {
+                        currentVideoSlide = totalVideoSlides;
+                        updateVideoCarousel(false);
+                    }, 600);
+                } else if (currentVideoSlide < totalVideoSlides) {
+                    setTimeout(() => {
+                        currentVideoSlide = totalVideoSlides * 2 - 1;
+                        updateVideoCarousel(false);
+                    }, 600);
                 }
+            }
+
+            function nextVideoSlide() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                
+                currentVideoSlide++;
                 updateVideoCarousel();
+                resetPosition();
+                
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 600);
             }
 
             function prevVideoSlide() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                
                 currentVideoSlide--;
-                if (currentVideoSlide < 0) {
-                    currentVideoSlide = totalVideoSlides - 1;
-                }
                 updateVideoCarousel();
+                resetPosition();
+                
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 600);
             }
 
             function goToVideoSlide(slideIndex) {
-                currentVideoSlide = slideIndex;
+                if (isTransitioning) return;
+                
+                // 中央セットの指定されたスライドに移動
+                currentVideoSlide = totalVideoSlides + slideIndex;
                 updateVideoCarousel();
             }
 
@@ -1816,6 +1879,19 @@
                 }
             }
 
+            // 初期設定
+            setupInfiniteSlides();
+
+            // 少し遅延させて初期表示を正しく設定
+            setTimeout(() => {
+                updateVideoCarousel(false);
+            }, 50);
+
+            // 少し遅延させて初期表示を正しく設定
+            setTimeout(() => {
+                updateMusicCarousel(false);
+            }, 50);
+
             // イベントリスナー
             videoNextBtn.addEventListener('click', nextVideoSlide);
             videoPrevBtn.addEventListener('click', prevVideoSlide);
@@ -1828,8 +1904,6 @@
             videoCarousel.addEventListener('touchstart', (e) => {
                 touchStartX = e.changedTouches[0].screenX;
                 isDragging = true;
-                
-                // タッチ時にナビゲーションを表示
                 videoCarousel.classList.add('touch-active');
             }, { passive: true });
 
@@ -1844,7 +1918,6 @@
                 handleSwipe();
                 isDragging = false;
                 
-                // タッチ終了後、3秒でナビゲーションを非表示
                 setTimeout(() => {
                     videoCarousel.classList.remove('touch-active');
                 }, 3000);
@@ -1877,16 +1950,17 @@
                 }
             });
 
-            // カーソルスタイル設定
             videoCarousel.style.cursor = 'grab';
-
-            // Initialize
-            updateVideoCarousel();
             
-            console.log('Video carousel initialized - MANUAL + SWIPE ENABLED');
+            // 初期表示を確実に中央に配置
+            setTimeout(() => {
+                updateVideoCarousel(false);
+            }, 100);
+            
+            console.log('Video carousel initialized - INFINITE SCROLL ENABLED');
         }
 
-        // Music carousel functionality (手動操作のみ + タッチスワイプ対応)
+        // Music carousel functionality (無限スクロール + タッチスワイプ対応)
         function initMusicCarousel() {
             const musicSlides = document.getElementById('musicSlides');
             const musicPrevBtn = document.getElementById('musicPrevBtn');
@@ -1894,24 +1968,55 @@
             const musicIndicators = document.querySelectorAll('.music-indicator');
             const musicCarousel = document.querySelector('.music-carousel');
             let currentMusicSlide = 0;
-            const totalMusicSlides = 4;
+            const totalMusicSlides = 4; // 4つのアルバム
+            const totalClones = totalMusicSlides * 3; // 3セット分作成（前、現在、後）
 
             // タッチ関連の変数
             let touchStartX = 0;
             let touchEndX = 0;
             let isDragging = false;
-            const minSwipeDistance = 50; // 最小スワイプ距離（px）
+            const minSwipeDistance = 50;
+            let isTransitioning = false;
 
-            function updateMusicCarousel() {
-                // 循環インデックスを正規化
-                currentMusicSlide = ((currentMusicSlide % totalMusicSlides) + totalMusicSlides) % totalMusicSlides;
+            // 初期化：スライドを複製して無限スクロール用に準備
+            function setupInfiniteSlides() {
+                const originalSlides = Array.from(musicSlides.children);
+                musicSlides.innerHTML = '';
+                
+                // 3セット分のスライドを作成（前、現在、後）
+                for (let set = 0; set < 3; set++) {
+                    originalSlides.forEach(slide => {
+                        const clone = slide.cloneNode(true);
+                        musicSlides.appendChild(clone);
+                    });
+                }
+                
+                // 初期位置を中央セットに設定
+                currentMusicSlide = totalMusicSlides; // 中央セットの最初
+                // トランジションなしで初期位置を設定
+                musicSlides.style.transition = 'none';
+                musicSlides.style.transform = `translateX(-${currentMusicSlide * 100}%)`;
+                
+                // 次のフレームでトランジションを有効化
+                requestAnimationFrame(() => {
+                    musicSlides.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                });
+            }
+
+            function updateMusicCarousel(smooth = true) {
+                if (smooth) {
+                    musicSlides.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                } else {
+                    musicSlides.style.transition = 'none';
+                }
                 
                 const translateX = -currentMusicSlide * 100;
                 musicSlides.style.transform = `translateX(${translateX}%)`;
                 
-                // Update indicators
+                // インジケーターの更新（実際のスライド位置で計算）
+                const actualSlide = currentMusicSlide % totalMusicSlides;
                 musicIndicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === currentMusicSlide);
+                    indicator.classList.toggle('active', index === actualSlide);
                 });
                 
                 // ボタンは常に有効
@@ -1919,24 +2024,52 @@
                 musicNextBtn.disabled = false;
             }
 
-            function nextMusicSlide() {
-                currentMusicSlide++;
-                if (currentMusicSlide >= totalMusicSlides) {
-                    currentMusicSlide = 0;
+            function resetPosition() {
+                // 端に近づいたら中央にリセット
+                if (currentMusicSlide >= totalMusicSlides * 2) {
+                    setTimeout(() => {
+                        currentMusicSlide = totalMusicSlides;
+                        updateMusicCarousel(false);
+                    }, 600);
+                } else if (currentMusicSlide < totalMusicSlides) {
+                    setTimeout(() => {
+                        currentMusicSlide = totalMusicSlides * 2 - 1;
+                        updateMusicCarousel(false);
+                    }, 600);
                 }
+            }
+
+            function nextMusicSlide() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                
+                currentMusicSlide++;
                 updateMusicCarousel();
+                resetPosition();
+                
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 600);
             }
 
             function prevMusicSlide() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                
                 currentMusicSlide--;
-                if (currentMusicSlide < 0) {
-                    currentMusicSlide = totalMusicSlides - 1;
-                }
                 updateMusicCarousel();
+                resetPosition();
+                
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 600);
             }
 
             function goToMusicSlide(slideIndex) {
-                currentMusicSlide = slideIndex;
+                if (isTransitioning) return;
+                
+                // 中央セットの指定されたスライドに移動
+                currentMusicSlide = totalMusicSlides + slideIndex;
                 updateMusicCarousel();
             }
 
@@ -1945,16 +2078,17 @@
                 
                 if (Math.abs(swipeDistance) > minSwipeDistance) {
                     if (swipeDistance > 0) {
-                        // 右スワイプ（左へ移動）
                         prevMusicSlide();
                     } else {
-                        // 左スワイプ（右へ移動）
                         nextMusicSlide();
                     }
                 }
             }
 
-            // マウス・タッチイベントリスナー（ボタン操作）
+            // 初期設定
+            setupInfiniteSlides();
+
+            // イベントリスナー
             musicNextBtn.addEventListener('click', nextMusicSlide);
             musicPrevBtn.addEventListener('click', prevMusicSlide);
 
@@ -1962,15 +2096,15 @@
                 indicator.addEventListener('click', () => goToMusicSlide(index));
             });
 
-            // タッチイベントリスナー（スワイプ操作）
+            // タッチイベント
             musicCarousel.addEventListener('touchstart', (e) => {
                 touchStartX = e.changedTouches[0].screenX;
                 isDragging = true;
+                musicCarousel.classList.add('touch-active');
             }, { passive: true });
 
             musicCarousel.addEventListener('touchmove', (e) => {
                 if (!isDragging) return;
-                // スクロールを防ぐ
                 e.preventDefault();
             }, { passive: false });
 
@@ -1979,9 +2113,13 @@
                 touchEndX = e.changedTouches[0].screenX;
                 handleSwipe();
                 isDragging = false;
+                
+                setTimeout(() => {
+                    musicCarousel.classList.remove('touch-active');
+                }, 3000);
             }, { passive: true });
 
-            // マウスイベントリスナー（PC用ドラッグ操作）
+            // マウスイベント
             musicCarousel.addEventListener('mousedown', (e) => {
                 touchStartX = e.clientX;
                 isDragging = true;
@@ -2008,19 +2146,20 @@
                 }
             });
 
-            // CSS自動アニメーションも完全無効化
+            // CSS自動アニメーションを無効化
             musicSlides.style.animation = 'none';
             musicSlides.style.animationPlayState = 'paused';
             musicSlides.style.animationDuration = '0s';
             musicSlides.style.animationIterationCount = '0';
 
-            // カーソルスタイル設定
             musicCarousel.style.cursor = 'grab';
-
-            // Initialize
-            updateMusicCarousel();
             
-            console.log('Music carousel initialized - MANUAL + SWIPE ENABLED');
+            // 初期表示を確実に中央に配置
+            setTimeout(() => {
+                updateMusicCarousel(false);
+            }, 100);
+            
+            console.log('Music carousel initialized - INFINITE SCROLL ENABLED');
         }
 
         // Member card tap functionality for mobile

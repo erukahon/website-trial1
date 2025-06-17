@@ -1144,6 +1144,20 @@
             transform: scale(1.05);
         }
 
+        /* X Icon Responsive */
+        .x-icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            background-color: #ffffff;
+            padding: 8px;
+        }
+
+        .x-icon:hover {
+            transform: scale(1.05);
+        }
+
         /* Amazon Music Icon Responsive */
         .amazon-music-icon {
             width: 96px;
@@ -1324,6 +1338,12 @@
                 width: fit-content;
             }
 
+            /* X Icon - Tablet Size */
+            .x-icon {
+                width: 80px;
+                height: 80px;
+            }
+
             /* Apple Music Icon - Tablet Size */
             .apple-music-icon {
                 width: 80px;
@@ -1396,6 +1416,12 @@
                 height: 200px;
                 width: calc(100vw - 30px);
                 max-width: 100%;
+            }
+
+            /* X Icon - Mobile Size */
+            .x-icon {
+                width: 64px;
+                height: 64px;
             }
 
             /* Apple Music Icon - Mobile Size */
@@ -1647,6 +1673,10 @@
                 <td>
                     <div align="center">
                         <div class="music-icons">
+                            <a href="https://x.com/erukahon_japan" target="_blank" rel="noopener noreferrer">
+                                <img src="images/x-twitter-icon.svg" alt="Xで見る" 
+                                     class="x-icon">
+                            </a>
                             <a href="https://music.amazon.co.jp/artists/B0FBGPS2S1/%25E3%2582%25A8%25E3%2583%25AB%25E3%2582%25AB%25E3%2583%259B%25E3%2583%25B3?marketplaceId=A1VC38T7YXB528&musicTerritory=JP&ref=dm_sh_ogLeSVf6iP1AlVK0R2eY4pU33">
                                 <img src="images/amazon-music-icon.svg" alt="Amazon Musicで聴く" 
                                      class="amazon-music-icon">

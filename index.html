@@ -1073,6 +1073,39 @@
             color: #b91c1c;
         }
 
+        /* Apple Music Icon Responsive */
+        .apple-music-icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .apple-music-icon:hover {
+            transform: scale(1.05);
+        }
+
+        /* Amazon Music Icon Responsive */
+        .amazon-music-icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .amazon-music-icon:hover {
+            transform: scale(1.05);
+        }
+
+        /* Music Icons Container */
+        .music-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .menu-toggle {
@@ -1226,6 +1259,22 @@
                 margin-right: auto;
                 width: fit-content;
             }
+
+            /* Apple Music Icon - Tablet Size */
+            .apple-music-icon {
+                width: 80px;
+                height: 80px;
+            }
+
+            /* Amazon Music Icon - Tablet Size */
+            .amazon-music-icon {
+                width: 80px;
+                height: 80px;
+            }
+
+            .music-icons {
+                gap: 15px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1277,6 +1326,22 @@
                 height: 200px;
                 width: calc(100vw - 30px);
                 max-width: 100%;
+            }
+
+            /* Apple Music Icon - Mobile Size */
+            .apple-music-icon {
+                width: 64px;
+                height: 64px;
+            }
+
+            /* Amazon Music Icon - Mobile Size */
+            .amazon-music-icon {
+                width: 64px;
+                height: 64px;
+            }
+
+            .music-icons {
+                gap: 10px;
             }
         }
 
@@ -1511,12 +1576,24 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="social-links">
-            <a href="#">📘</a>
-            <a href="#">📷</a>
-            <a href="#">🐦</a>
-            <a href="#">🎵</a>
-        </div>
+        <table width="100%" border="0">
+            <tr>
+                <td>
+                    <div align="center">
+                        <div class="music-icons">
+                            <a href="https://music.amazon.co.jp/artists/B0FBGPS2S1/%25E3%2582%25A8%25E3%2583%25AB%25E3%2582%25AB%25E3%2583%259B%25E3%2583%25B3?marketplaceId=A1VC38T7YXB528&musicTerritory=JP&ref=dm_sh_ogLeSVf6iP1AlVK0R2eY4pU33">
+                                <img src="images/amazon-music-icon.svg" alt="Amazon Musicで聴く" 
+                                     class="amazon-music-icon">
+                            </a>
+                            <a href="https://music.apple.com/jp/album/cring-policies/1817606266">
+                                <img src="images/apple-music-icon.svg" alt="Apple Musicで聴く" 
+                                     class="apple-music-icon">
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
         <p>©1997-2025 ERUKAHON. All Rights Reserved.<br>
         No reprodaction or repubulication without written permission.</p>
     </footer>

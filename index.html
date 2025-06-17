@@ -618,6 +618,8 @@
             filter: none;
             backdrop-filter: none;
             -webkit-filter: none;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
 
         .music-carousel {
@@ -683,6 +685,13 @@
             filter: none;
             backdrop-filter: none;
             -webkit-filter: none;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
+            -ms-interpolation-mode: nearest-neighbor;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .music-nav {
@@ -706,6 +715,14 @@
             filter: none;
             backdrop-filter: none;
             -webkit-filter: none;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .music-carousel:hover .music-nav,
+        .music-carousel.touch-active .music-nav {
+            opacity: 1;
+            visibility: visible;
         }
 
         .music-nav:hover {
@@ -907,6 +924,14 @@
             filter: none;
             backdrop-filter: none;
             -webkit-filter: none;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .video-carousel:hover .video-nav,
+        .video-carousel.touch-active .video-nav {
+            opacity: 1;
+            visibility: visible;
         }
 
         .video-nav:hover {
@@ -1144,6 +1169,10 @@
                 filter: none;
                 backdrop-filter: none;
                 -webkit-filter: none;
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+                backface-visibility: hidden;
+                transform: translateZ(0);
             }
 
             .music-nav {
@@ -1711,6 +1740,9 @@
             videoCarousel.addEventListener('touchstart', (e) => {
                 touchStartX = e.changedTouches[0].screenX;
                 isDragging = true;
+                
+                // タッチ時にナビゲーションを表示
+                videoCarousel.classList.add('touch-active');
             }, { passive: true });
 
             videoCarousel.addEventListener('touchmove', (e) => {
@@ -1723,6 +1755,11 @@
                 touchEndX = e.changedTouches[0].screenX;
                 handleSwipe();
                 isDragging = false;
+                
+                // タッチ終了後、3秒でナビゲーションを非表示
+                setTimeout(() => {
+                    videoCarousel.classList.remove('touch-active');
+                }, 3000);
             }, { passive: true });
 
             // マウスイベント

@@ -613,7 +613,7 @@
 
         /* Music Section */
         .music-section {
-            background: #ffffff;
+            background: transparent;
             padding: 60px 0;
             filter: none;
             backdrop-filter: none;
@@ -627,14 +627,16 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
+            filter: none !important;
+            backdrop-filter: none !important;
+            -webkit-filter: none !important;
             touch-action: pan-y;
             user-select: none;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
+            mix-blend-mode: normal;
+            isolation: auto;
         }
 
         .music-slides-container {
@@ -684,16 +686,70 @@
             object-position: center;
             display: block;
             margin: 0 auto;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            image-rendering: pixelated;
-            -ms-interpolation-mode: nearest-neighbor;
+            filter: none !important;
+            backdrop-filter: none !important;
+            -webkit-filter: none !important;
+            image-rendering: auto;
             backface-visibility: hidden;
             transform: translateZ(0);
             will-change: transform;
+            opacity: 1;
+            mix-blend-mode: normal;
+            isolation: auto;
+            color-adjust: exact;
+            -webkit-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Album Section */
+        .album-section {
+            background: transparent;
+            padding: 60px 0;
+        }
+
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .album-item {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid #000000;
+        }
+
+        .album-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .album-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            filter: none !important;
+            backdrop-filter: none !important;
+            -webkit-filter: none !important;
+            image-rendering: auto;
+            opacity: 1;
+            mix-blend-mode: normal;
+            isolation: auto;
+            color-adjust: exact;
+            -webkit-color-adjust: exact;
+            print-color-adjust: exact;
+            transition: transform 0.3s ease;
+        }
+
+        .album-item img:hover {
+            transform: scale(1.02);
         }
 
         .music-nav {
@@ -1207,13 +1263,18 @@
             .music-slide img {
                 max-width: 100%;
                 height: auto;
-                filter: none;
-                backdrop-filter: none;
-                -webkit-filter: none;
-                image-rendering: -webkit-optimize-contrast;
-                image-rendering: crisp-edges;
+                filter: none !important;
+                backdrop-filter: none !important;
+                -webkit-filter: none !important;
+                image-rendering: auto;
                 backface-visibility: hidden;
                 transform: translateZ(0);
+                opacity: 1;
+                mix-blend-mode: normal;
+                isolation: auto;
+                color-adjust: exact;
+                -webkit-color-adjust: exact;
+                print-color-adjust: exact;
             }
 
             .music-nav {
@@ -1275,6 +1336,12 @@
             }
 
             .music-icons {
+                gap: 15px;
+            }
+
+            /* Album Grid - Tablet */
+            .album-grid {
+                grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
             }
         }
@@ -1345,6 +1412,13 @@
             .music-icons {
                 gap: 10px;
             }
+
+            /* Album Grid - Mobile */
+            .album-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 15px;
+            }
         }
 
         /* Tablet specific adjustments */
@@ -1403,7 +1477,7 @@
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#news">News</a></li>
-                    <li><a href="#music">Music</a></li>
+                    <li><a href="#album">Album</a></li>
                     <li><a href="#video">Video</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#live">Live</a></li>
@@ -1445,33 +1519,21 @@
         </div>
     </section>
 
-    <!-- Music Section -->
-    <section class="section music-section" id="music">
-        <h2>Music</h2>
-        <div class="music-carousel">
-            <div class="music-slides-container">
-                <div class="music-slides" id="musicSlides">
-                    <div class="music-slide">
-                        <img src="images/cringpolicies.jpg" alt="CRING POLICIES アルバムカバー">
-                    </div>
-                    <div class="music-slide">
-                        <img src="images/ajito.jpg" alt="AJITO アルバムカバー">
-                    </div>
-                    <div class="music-slide">
-                        <img src="images/igotarevenge.jpg" alt="I GOT A REVENGE アルバムカバー">
-                    </div>
-                    <div class="music-slide">
-                        <img src="images/infighters.jpg" alt="INFIGHTERS アルバムカバー">
-                    </div>
-                </div>
-                <button class="music-nav prev" id="musicPrevBtn">‹</button>
-                <button class="music-nav next" id="musicNextBtn">›</button>
+    <!-- Album Section -->
+    <section class="section album-section" id="album">
+        <h2>Album</h2>
+        <div class="album-grid">
+            <div class="album-item">
+                <img src="images/cringpolicies.jpg" alt="CRING POLICIES アルバムカバー">
             </div>
-            <div class="music-indicators">
-                <div class="music-indicator active" data-slide="0"></div>
-                <div class="music-indicator" data-slide="1"></div>
-                <div class="music-indicator" data-slide="2"></div>
-                <div class="music-indicator" data-slide="3"></div>
+            <div class="album-item">
+                <img src="images/ajito.jpg" alt="AJITO アルバムカバー">
+            </div>
+            <div class="album-item">
+                <img src="images/igotarevenge.jpg" alt="I GOT A REVENGE アルバムカバー">
+            </div>
+            <div class="album-item">
+                <img src="images/infighters.jpg" alt="INFIGHTERS アルバムカバー">
             </div>
         </div>
     </section>
@@ -2169,9 +2231,6 @@
             
             // Initialize video carousel
             initVideoCarousel();
-            
-            // Initialize music carousel
-            initMusicCarousel();
 
             document.querySelectorAll('.member-card').forEach(card => {
                 card.addEventListener('click', function(e) {

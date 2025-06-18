@@ -411,297 +411,6 @@
             letter-spacing: 1px;
         }
 
-        /* Music Section */
-        .music-carousel {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            margin-top: 40px;
-            background: #f8f8f8;
-            padding: 8px 4px;
-            border-radius: 0;
-        }
-
-        .music-carousel-container {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .music-slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            gap: 30px;
-        }
-
-        .music-slide {
-            min-width: calc(50% - 15px);
-            flex-shrink: 0;
-            opacity: 0.7;
-            transform: scale(0.9);
-            transition: all 0.5s ease;
-        }
-
-        .music-slide.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .music-item {
-            background: #f8f8f8;
-            padding: 0;
-            border-radius: 0;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            position: relative;
-            height: 100%;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .music-item::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #b91c1c, transparent, #b91c1c);
-            border-radius: 0;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .music-slide.active .music-item::before {
-            opacity: 1;
-        }
-
-        .music-item:hover {
-            transform: translateY(-5px);
-            background: #f0f0f0;
-        }
-
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 4px;
-            pointer-events: none;
-        }
-
-        .carousel-btn {
-            background: rgba(185, 28, 28, 0.8);
-            color: #ffffff;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: auto;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 4px 15px rgba(185, 28, 28, 0.3);
-        }
-
-        .carousel-btn:hover {
-            background: rgba(185, 28, 28, 1);
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(185, 28, 28, 0.5);
-        }
-
-        .carousel-btn:disabled {
-            background: rgba(102, 102, 102, 0.5);
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 6px;
-        }
-
-        .indicator {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: #666666;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .indicator::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #b91c1c;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .indicator.active {
-            background: #b91c1c;
-            transform: scale(1.2);
-        }
-
-        .indicator.active::after {
-            opacity: 1;
-        }
-
-        .music-item h3 {
-            font-family: 'Oswald', sans-serif;
-            font-weight: 600;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            color: #333333;
-        }
-
-        .album-cover {
-            width: 50%;
-            height: 50%;
-            background: linear-gradient(45deg, #b91c1c, #7f1d1d);
-            border-radius: 0;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #ffffff;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .album-cover img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            transition: transform 0.3s ease;
-        }
-
-        .music-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-grow: 1;
-        }
-
-        .music-item:hover .album-cover img {
-            transform: scale(1.05);
-        }
-
-        /* Music Section */
-        .music-section {
-            background: transparent;
-            padding: 60px 0;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-        }
-
-        .music-carousel {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            filter: none !important;
-            backdrop-filter: none !important;
-            -webkit-filter: none !important;
-            touch-action: pan-y;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            mix-blend-mode: normal;
-            isolation: auto;
-        }
-
-        .music-slides-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 0;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
-        }
-
-        .music-slides {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            gap: 2px;
-            filter: none;
-            backdrop-filter: none;
-        }
-
-        .music-slides.manual-control {
-            animation-play-state: paused;
-        }
-
-        @keyframes musicSlideInfinite {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-300%);
-            }
-        }
-
-        .music-slides:hover {
-            animation-play-state: paused;
-        }
-
-        .music-slide {
-            min-width: calc(100% - 1px);
-            flex-shrink: 0;
-            position: relative;
-        }
-
-        .music-slide img {
-            max-width: 100%;
-            height: auto;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-            margin: 0 auto;
-            filter: none !important;
-            backdrop-filter: none !important;
-            -webkit-filter: none !important;
-            image-rendering: auto;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-            will-change: transform;
-            opacity: 1;
-            mix-blend-mode: normal;
-            isolation: auto;
-            color-adjust: exact;
-            -webkit-color-adjust: exact;
-            print-color-adjust: exact;
-        }
-
         /* Album Section */
         .album-section {
             background: transparent;
@@ -736,16 +445,6 @@
             object-fit: cover;
             object-position: center;
             display: block;
-            filter: none !important;
-            backdrop-filter: none !important;
-            -webkit-filter: none !important;
-            image-rendering: auto;
-            opacity: 1;
-            mix-blend-mode: normal;
-            isolation: auto;
-            color-adjust: exact;
-            -webkit-color-adjust: exact;
-            print-color-adjust: exact;
             transition: transform 0.3s ease;
         }
 
@@ -753,162 +452,10 @@
             transform: scale(1.02);
         }
 
-        .music-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #333333;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .music-carousel:hover .music-nav,
-        .music-carousel.touch-active .music-nav {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .music-nav:hover {
-            background: rgba(255, 255, 255, 1);
-            color: #b91c1c;
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        .music-nav:disabled {
-            background: rgba(255, 255, 255, 0.5);
-            color: #cccccc;
-            cursor: not-allowed;
-            transform: translateY(-50%);
-            box-shadow: none;
-        }
-
-        .music-nav.prev {
-            left: 20px;
-        }
-
-        .music-nav.next {
-            right: 20px;
-        }
-
-        .music-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
-        }
-
-        .music-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #ddd;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
-        }
-
-        .music-indicator:hover {
-            background: #bbb;
-            transform: scale(1.2);
-        }
-
-        .music-indicator.active {
-            background: #b91c1c;
-            transform: scale(1.3);
-        }
-
-        /* Fade In Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        // Apply fade-in to elements
-        .section h2,
-        .band-intro,
-        .member-card,
-        .news-item,
-        .music-carousel,
-        .video-carousel,
-        .live-schedule {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .section h2.visible,
-        .band-intro.visible,
-        .member-card.visible,
-        .news-item.visible,
-        .music-carousel.visible,
-        .video-carousel.visible,
-        .live-schedule.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Staggered animation for multiple elements */
-        .member-card:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-
-        .member-card:nth-child(2) {
-            transition-delay: 0.2s;
-        }
-
-        .member-card:nth-child(3) {
-            transition-delay: 0.3s;
-        }
-
-        .news-item:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-
-        .news-item:nth-child(2) {
-            transition-delay: 0.2s;
-        }
-
-        .news-item:nth-child(3) {
-            transition-delay: 0.3s;
-        }
-
         /* Video Section */
         .video-section {
             background: #ffffff;
             padding: 60px 0;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
         }
 
         .video-carousel {
@@ -916,9 +463,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
             touch-action: pan-y;
             user-select: none;
             -webkit-user-select: none;
@@ -930,25 +474,18 @@
             position: relative;
             overflow: hidden;
             border-radius: 0;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
         }
 
         .video-slides {
             display: flex;
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             gap: 2px;
-            filter: none;
-            backdrop-filter: none;
         }
 
         .video-slide {
             min-width: calc(100% - 2px);
             flex-shrink: 0;
             position: relative;
-            filter: none;
-            backdrop-filter: none;
         }
 
         .video-slide iframe {
@@ -957,9 +494,6 @@
             border: none;
             display: block;
             margin: 0 auto;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
         }
 
         .video-nav {
@@ -980,9 +514,6 @@
             transition: all 0.3s ease;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 10;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
             opacity: 0;
             visibility: hidden;
         }
@@ -1023,9 +554,6 @@
             margin-top: 20px;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
         }
 
         .video-indicator {
@@ -1035,9 +563,6 @@
             background: #ddd;
             cursor: pointer;
             transition: all 0.3s ease;
-            filter: none;
-            backdrop-filter: none;
-            -webkit-filter: none;
         }
 
         .video-indicator:hover {
@@ -1048,25 +573,6 @@
         .video-indicator.active {
             background: #b91c1c;
             transform: scale(1.3);
-        }
-
-        .cta-button {
-            font-family: 'Oswald', sans-serif;
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, #b91c1c, #7f1d1d);
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 0;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
-            margin: 0 10px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
         }
 
         /* Live Section */
@@ -1179,6 +685,43 @@
             flex-wrap: wrap;
         }
 
+        /* Fade In Animation */
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered animation for multiple elements */
+        .member-card:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .member-card:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .member-card:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        .news-item:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .news-item:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .news-item:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .menu-toggle {
@@ -1244,68 +787,6 @@
                 gap: 10px;
             }
 
-            .music-carousel {
-                background: #f8f8f8;
-                padding: 6px 3px;
-            }
-
-            .music-slides {
-                gap: 20px;
-            }
-
-            .music-slide {
-                min-width: calc(100% - 20px);
-            }
-
-            .music-item {
-                min-height: 250px;
-            }
-
-            .carousel-nav {
-                padding: 0 2px;
-            }
-
-            .carousel-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .music-slides-container {
-                margin: 0 -20px;
-            }
-
-            .music-slide img {
-                max-width: 100%;
-                height: auto;
-                filter: none !important;
-                backdrop-filter: none !important;
-                -webkit-filter: none !important;
-                image-rendering: auto;
-                backface-visibility: hidden;
-                transform: translateZ(0);
-                opacity: 1;
-                mix-blend-mode: normal;
-                isolation: auto;
-                color-adjust: exact;
-                -webkit-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            .music-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .music-nav.prev {
-                left: 10px;
-            }
-
-            .music-nav.next {
-                right: 10px;
-            }
-
             .video-slides-container {
                 margin: 0 -20px;
             }
@@ -1328,14 +809,6 @@
 
             .video-nav.next {
                 right: 10px;
-            }
-
-            .cta-button {
-                margin: 5px;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                width: fit-content;
             }
 
             /* X Icon - Tablet Size */
@@ -1526,19 +999,19 @@
 
     <!-- News Section -->
     <section class="section" id="news">
-        <h2>Latest News</h2>
+        <h2 class="fade-in-element">Latest News</h2>
         <div class="news-grid">
-            <div class="news-item">
+            <div class="news-item fade-in-element">
                 <div class="news-date">2025.07.01</div>
                 <h3>Amazon Music/Apple Musicに同時配信！</h3>
                 <p>アルバム「Cring Policies」、「INFIGHTERS」が、Amazon Music/Apple Musicでお楽しみいただけるようになりました！</p>
             </div>
-            <div class="news-item">
+            <div class="news-item fade-in-element">
                 <div class="news-date">2025.07.01</div>
                 <h3>ライブ出演決定！</h3>
                 <p>2025.08.07(木)、新宿紅布でライブします。</p>
             </div>
-            <div class="news-item">
+            <div class="news-item fade-in-element">
                 <div class="news-date">2025.07.01</div>
                 <h3>Webサイトリニューアル！</h3>
                 <p>Webサイトをリニューアルしました。</p>
@@ -1548,8 +1021,8 @@
 
     <!-- Album Section -->
     <section class="section album-section" id="album">
-        <h2>Album</h2>
-        <div class="album-grid">
+        <h2 class="fade-in-element">Album</h2>
+        <div class="album-grid fade-in-element">
             <div class="album-item">
                 <img src="images/cringpolicies.jpg" alt="CRING POLICIES アルバムカバー">
             </div>
@@ -1567,8 +1040,8 @@
 
     <!-- Video Section -->
     <section class="section video-section" id="video">
-        <h2>Video</h2>
-        <div class="video-carousel">
+        <h2 class="fade-in-element">Video</h2>
+        <div class="video-carousel fade-in-element">
             <div class="video-slides-container">
                 <div class="video-slides" id="videoSlides">
                     <div class="video-slide">
@@ -1590,7 +1063,7 @@
 
     <!-- Member Section -->
     <section class="section" id="member">
-        <h2>Member</h2>
+        <h2 class="fade-in-element">Member</h2>
         <div class="band-photo-section">
             <!-- <div class="band-intro">
                 <p>エルカホン！<br>
@@ -1604,7 +1077,7 @@
 
         <!-- Members -->
         <div class="members-grid">
-            <div class="member-card">
+            <div class="member-card fade-in-element">
                 <div class="member-popup">
                     突如現れたパンクスにシノザキは溺死寸前！！彼の吐き捨てたツバでシノザキの地盤はゆるみ始めているとかいないとか。
 でも彼は河の側に住んでいる！
@@ -1621,7 +1094,7 @@
                 <div class="member-name">MASARU</div>
                 <div class="member-role">Vocal / Guitar</div>
             </div>
-            <div class="member-card">
+            <div class="member-card fade-in-element">
                 <div class="member-popup">
                     「ヒガシコイワに一際ダークに光る謎の男現る！」
 この触れ込みに、ヒガシコイワ一帯の小学校児童は集団登校を余儀なくされた。
@@ -1636,7 +1109,7 @@
                 <div class="member-name">HIRO</div>
                 <div class="member-role">Bass</div>
             </div>
-            <div class="member-card">
+            <div class="member-card fade-in-element">
                 <div class="member-popup">
                     「彼が生れ落ちた時、バスドラのアタック音が聞こえた」というのはマコトファミリーの伝説的逸話だ。
 ハイスクール中退後ドラムから離れ、酒と女に救いを求める日々であったが、マサルの「パンクバンドをやる。ドラムをやってくれ」の一言で、かつてのヘヴィネスを取り戻す。
@@ -1654,8 +1127,8 @@
 
     <!-- Live Section -->
     <section class="section" id="live">
-        <h2>Live Schedule</h2>
-        <div class="live-schedule">
+        <h2 class="fade-in-element">Live Schedule</h2>
+        <div class="live-schedule fade-in-element">
             <div class="live-item">
                 <div>
                     <div class="live-date">2025.08.07(木)</div>
@@ -1677,11 +1150,11 @@
                                 <img src="images/x-twitter-icon.svg" alt="Xで見る" 
                                      class="x-icon">
                             </a>
-                            <a href="https://music.amazon.co.jp/artists/B0FBGPS2S1/%25E3%2582%25A8%25E3%2583%25AB%25E3%2582%25AB%25E3%2583%259B%25E3%2583%25B3?marketplaceId=A1VC38T7YXB528&musicTerritory=JP&ref=dm_sh_ogLeSVf6iP1AlVK0R2eY4pU33">
+                            <a href="https://music.amazon.co.jp/artists/B0FBGPS2S1/%25E3%2582%25A8%25E3%2583%25AB%25E3%2582%25AB%25E3%2583%259B%25E3%2583%25B3?marketplaceId=A1VC38T7YXB528&musicTerritory=JP&ref=dm_sh_ogLeSVf6iP1AlVK0R2eY4pU33" target="_blank" rel="noopener noreferrer">
                                 <img src="images/amazon-music-icon.svg" alt="Amazon Musicで聴く" 
                                      class="amazon-music-icon">
                             </a>
-                            <a href="https://music.apple.com/jp/album/cring-policies/1817606266">
+                            <a href="https://music.apple.com/jp/album/cring-policies/1817606266" target="_blank" rel="noopener noreferrer">
                                 <img src="images/apple-music-icon.svg" alt="Apple Musicで聴く" 
                                      class="apple-music-icon">
                             </a>
@@ -1729,97 +1202,6 @@
             }
         });
 
-        // News carousel functionality
-        function initNewsCarousel() {
-            const newsSlides = document.getElementById('newsSlides');
-            const newsPrevBtn = document.getElementById('newsPrevBtn');
-            const newsNextBtn = document.getElementById('newsNextBtn');
-            const newsIndicators = document.querySelectorAll('.news-indicator');
-            const newsSlideElements = document.querySelectorAll('.news-slide');
-            let currentNewsSlide = 0;
-            const totalNewsSlides = 3;
-
-            function updateNewsCarousel() {
-                // Calculate the transform value based on current slide
-                const translateX = -currentNewsSlide * 50; // 50% width
-                newsSlides.style.transform = `translateX(${translateX}%)`;
-                
-                // Update slide active states
-                newsSlideElements.forEach((slide, index) => {
-                    slide.classList.toggle('active', index === currentNewsSlide);
-                });
-                
-                // Update indicators
-                newsIndicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === currentNewsSlide);
-                });
-                
-                // Update button states
-                newsPrevBtn.disabled = currentNewsSlide === 0;
-                newsNextBtn.disabled = currentNewsSlide === totalNewsSlides - 1;
-            }
-
-            function nextNewsSlide() {
-                if (currentNewsSlide < totalNewsSlides - 1) {
-                    currentNewsSlide++;
-                    updateNewsCarousel();
-                }
-            }
-
-            function prevNewsSlide() {
-                if (currentNewsSlide > 0) {
-                    currentNewsSlide--;
-                    updateNewsCarousel();
-                }
-            }
-
-            function goToNewsSlide(slideIndex) {
-                currentNewsSlide = slideIndex;
-                updateNewsCarousel();
-            }
-
-            // Event listeners
-            newsNextBtn.addEventListener('click', nextNewsSlide);
-            newsPrevBtn.addEventListener('click', prevNewsSlide);
-
-            newsIndicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => goToNewsSlide(index));
-            });
-
-            // Auto-play functionality
-            let newsAutoPlayInterval = setInterval(() => {
-                if (currentNewsSlide < totalNewsSlides - 1) {
-                    nextNewsSlide();
-                } else {
-                    currentNewsSlide = 0;
-                    updateNewsCarousel();
-                }
-            }, 6000); // Change slide every 6 seconds
-
-            // Pause auto-play on hover
-            const newsCarousel = document.querySelector('.news-carousel');
-            newsCarousel.addEventListener('mouseenter', () => {
-                clearInterval(newsAutoPlayInterval);
-            });
-
-            newsCarousel.addEventListener('mouseleave', () => {
-                newsAutoPlayInterval = setInterval(() => {
-                    if (currentNewsSlide < totalNewsSlides - 1) {
-                        nextNewsSlide();
-                    } else {
-                        currentNewsSlide = 0;
-                        updateNewsCarousel();
-                    }
-                }, 6000);
-            });
-
-            // Initialize news carousel
-            initNewsCarousel();
-
-            // Initialize
-            updateNewsCarousel();
-        }
-
         // Scroll fade-in animation
         function initScrollFadeIn() {
             const observerOptions = {
@@ -1830,19 +1212,18 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // 要素が画面に入ったらフェードイン
                         entry.target.classList.add('visible');
                     } else {
-                        // 要素が画面から出たらvisibleクラスを削除
+                        // 要素が画面から出たらvisibleクラスを削除（次回のフェードインのため）
                         entry.target.classList.remove('visible');
                     }
                 });
             }, observerOptions);
 
             // Observe elements for fade-in animation
-            const elementsToObserve = document.querySelectorAll(
-                '.section h2, .band-intro, .member-card, .news-item, .music-carousel, .video-carousel, .live-schedule'
-            );
-
+            const elementsToObserve = document.querySelectorAll('.fade-in-element');
+            
             elementsToObserve.forEach(element => {
                 observer.observe(element);
             });
@@ -1981,11 +1362,6 @@
                 updateVideoCarousel(false);
             }, 50);
 
-            // 少し遅延させて初期表示を正しく設定
-            setTimeout(() => {
-                updateMusicCarousel(false);
-            }, 50);
-
             // イベントリスナー
             videoNextBtn.addEventListener('click', nextVideoSlide);
             videoPrevBtn.addEventListener('click', prevVideoSlide);
@@ -2050,210 +1426,6 @@
             setTimeout(() => {
                 updateVideoCarousel(false);
             }, 100);
-            
-            console.log('Video carousel initialized - INFINITE SCROLL ENABLED');
-        }
-
-        // Music carousel functionality (無限スクロール + タッチスワイプ対応)
-        function initMusicCarousel() {
-            const musicSlides = document.getElementById('musicSlides');
-            const musicPrevBtn = document.getElementById('musicPrevBtn');
-            const musicNextBtn = document.getElementById('musicNextBtn');
-            const musicIndicators = document.querySelectorAll('.music-indicator');
-            const musicCarousel = document.querySelector('.music-carousel');
-            let currentMusicSlide = 0;
-            const totalMusicSlides = 4; // 4つのアルバム
-            const totalClones = totalMusicSlides * 3; // 3セット分作成（前、現在、後）
-
-            // タッチ関連の変数
-            let touchStartX = 0;
-            let touchEndX = 0;
-            let isDragging = false;
-            const minSwipeDistance = 50;
-            let isTransitioning = false;
-
-            // 初期化：スライドを複製して無限スクロール用に準備
-            function setupInfiniteSlides() {
-                const originalSlides = Array.from(musicSlides.children);
-                musicSlides.innerHTML = '';
-                
-                // 3セット分のスライドを作成（前、現在、後）
-                for (let set = 0; set < 3; set++) {
-                    originalSlides.forEach(slide => {
-                        const clone = slide.cloneNode(true);
-                        musicSlides.appendChild(clone);
-                    });
-                }
-                
-                // 初期位置を中央セットに設定
-                currentMusicSlide = totalMusicSlides; // 中央セットの最初
-                // トランジションなしで初期位置を設定
-                musicSlides.style.transition = 'none';
-                musicSlides.style.transform = `translateX(-${currentMusicSlide * 100}%)`;
-                
-                // 次のフレームでトランジションを有効化
-                requestAnimationFrame(() => {
-                    musicSlides.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                });
-            }
-
-            function updateMusicCarousel(smooth = true) {
-                if (smooth) {
-                    musicSlides.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                } else {
-                    musicSlides.style.transition = 'none';
-                }
-                
-                const translateX = -currentMusicSlide * 100;
-                musicSlides.style.transform = `translateX(${translateX}%)`;
-                
-                // インジケーターの更新（実際のスライド位置で計算）
-                const actualSlide = currentMusicSlide % totalMusicSlides;
-                musicIndicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === actualSlide);
-                });
-                
-                // ボタンは常に有効
-                musicPrevBtn.disabled = false;
-                musicNextBtn.disabled = false;
-            }
-
-            function resetPosition() {
-                // 端に近づいたら中央にリセット
-                if (currentMusicSlide >= totalMusicSlides * 2) {
-                    setTimeout(() => {
-                        currentMusicSlide = totalMusicSlides;
-                        updateMusicCarousel(false);
-                    }, 600);
-                } else if (currentMusicSlide < totalMusicSlides) {
-                    setTimeout(() => {
-                        currentMusicSlide = totalMusicSlides * 2 - 1;
-                        updateMusicCarousel(false);
-                    }, 600);
-                }
-            }
-
-            function nextMusicSlide() {
-                if (isTransitioning) return;
-                isTransitioning = true;
-                
-                currentMusicSlide++;
-                updateMusicCarousel();
-                resetPosition();
-                
-                setTimeout(() => {
-                    isTransitioning = false;
-                }, 600);
-            }
-
-            function prevMusicSlide() {
-                if (isTransitioning) return;
-                isTransitioning = true;
-                
-                currentMusicSlide--;
-                updateMusicCarousel();
-                resetPosition();
-                
-                setTimeout(() => {
-                    isTransitioning = false;
-                }, 600);
-            }
-
-            function goToMusicSlide(slideIndex) {
-                if (isTransitioning) return;
-                
-                // 中央セットの指定されたスライドに移動
-                currentMusicSlide = totalMusicSlides + slideIndex;
-                updateMusicCarousel();
-            }
-
-            function handleSwipe() {
-                const swipeDistance = touchEndX - touchStartX;
-                
-                if (Math.abs(swipeDistance) > minSwipeDistance) {
-                    if (swipeDistance > 0) {
-                        prevMusicSlide();
-                    } else {
-                        nextMusicSlide();
-                    }
-                }
-            }
-
-            // 初期設定
-            setupInfiniteSlides();
-
-            // イベントリスナー
-            musicNextBtn.addEventListener('click', nextMusicSlide);
-            musicPrevBtn.addEventListener('click', prevMusicSlide);
-
-            musicIndicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => goToMusicSlide(index));
-            });
-
-            // タッチイベント
-            musicCarousel.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-                isDragging = true;
-                musicCarousel.classList.add('touch-active');
-            }, { passive: true });
-
-            musicCarousel.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-            }, { passive: false });
-
-            musicCarousel.addEventListener('touchend', (e) => {
-                if (!isDragging) return;
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-                isDragging = false;
-                
-                setTimeout(() => {
-                    musicCarousel.classList.remove('touch-active');
-                }, 3000);
-            }, { passive: true });
-
-            // マウスイベント
-            musicCarousel.addEventListener('mousedown', (e) => {
-                touchStartX = e.clientX;
-                isDragging = true;
-                musicCarousel.style.cursor = 'grabbing';
-            });
-
-            musicCarousel.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-            });
-
-            musicCarousel.addEventListener('mouseup', (e) => {
-                if (!isDragging) return;
-                touchEndX = e.clientX;
-                handleSwipe();
-                isDragging = false;
-                musicCarousel.style.cursor = 'grab';
-            });
-
-            musicCarousel.addEventListener('mouseleave', () => {
-                if (isDragging) {
-                    isDragging = false;
-                    musicCarousel.style.cursor = 'grab';
-                }
-            });
-
-            // CSS自動アニメーションを無効化
-            musicSlides.style.animation = 'none';
-            musicSlides.style.animationPlayState = 'paused';
-            musicSlides.style.animationDuration = '0s';
-            musicSlides.style.animationIterationCount = '0';
-
-            musicCarousel.style.cursor = 'grab';
-            
-            // 初期表示を確実に中央に配置
-            setTimeout(() => {
-                updateMusicCarousel(false);
-            }, 100);
-            
-            console.log('Music carousel initialized - INFINITE SCROLL ENABLED');
         }
 
         // Member card tap functionality for mobile
